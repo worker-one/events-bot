@@ -18,6 +18,8 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 # Install optional dependencies if needed
 RUN pip install --no-cache-dir ".[all]"
 
+EXPOSE 8080
+
 # Copy the rest of the application code into the container
 COPY . /app
 
