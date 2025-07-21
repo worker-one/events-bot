@@ -1,0 +1,9 @@
+strings:
+  en:
+    events_list: "Events List"
+    event_not_found: "Event not found"
+    event_details: "*Event Details*\n\nName: `{name}`\nDescription: `{description}`\nRegistration: {qtickets_link}"
+  ru:
+    events_list: "Список мероприятий"
+    event_not_found: "Мероприятие не найдено"
+    event_details: "*Детали мероприятия*\n\nНазвание: `{name}`\nОписание: `{description}`\nРегистрация: {qtickets_link}"

@@ -26,13 +26,18 @@ def read_user(
     return result
 
 
-def read_users(db_session: Session, ids: Optional[list[int]] = None) -> list[User]:
-    """Read users by ids"""
+def read_users(
+    db_session: Session,
+    ids: Optional[list[int]] = None,
+    role_id: Optional[int] = None,
+) -> list[User]:
+    """Read users by ids or role_id"""
+    query = db_session.query(User)
     if ids:
-        result = db_session.query(User).filter(User.id.in_(ids)).all()
-    else:
-        result = db_session.query(User).all()
-    return result
+        query = query.filter(User.id.in_(ids))
+    if role_id is not None:
+        query = query.filter(User.role_id == role_id)
+    return query.all()
 
 
 def create_user(
