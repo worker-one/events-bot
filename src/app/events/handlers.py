@@ -7,6 +7,7 @@ from telebot import TeleBot, types
 
 from .markup import create_events_list_markup
 from .service import read_event, read_events
+from .scheduler import schedule_message
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -83,4 +84,20 @@ def register_handlers(bot: TeleBot) -> None:
             message_id=call.message.message_id,
             text=message_text,
             parse_mode="Markdown",
+        )
+
+        # Schedule message about email confirmation in 90 seconds
+        schedule_message(
+            bot,
+            90,
+            user.id,
+            strings[user.lang].email_confirmation
+        )
+
+        # Schedule message about checking spam in 5 minutes (300 seconds)
+        schedule_message(
+            bot,
+            300,
+            user.id,
+            strings[user.lang].check_spam
         )

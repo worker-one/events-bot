@@ -38,11 +38,10 @@ else:
 # Replace with a unified approach:
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"connect_timeout": 5, "application_name": "telegram_bot"}
+    connect_args={"connect_timeout": 5, "application_name": "events-bot"}
     if "postgresql" in DATABASE_URL
     else {},
     poolclass=NullPool if "postgresql" in DATABASE_URL else None,
-    pool_size=32,
     echo=False,
 )
 
