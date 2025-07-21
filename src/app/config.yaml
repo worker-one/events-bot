@@ -1,10 +1,11 @@
-name: "telegram_bot"
-version: "1.2.0"
-lang: "en"
-timezone: "Europe/Paris"
-antiflood:
-  enabled: true
-  time_window_seconds: 2
+app:
+  name: "events_bot"
+  version: "0.1.0"
+  lang: "ru"
+  timezone: "Europe/Paris"
+  antiflood:
+    enabled: true
+    time_window_seconds: 2
 strings:
   en:
     cancel: "Cancel"

@@ -5,7 +5,7 @@ from ..auth.models import User
 from ..models import Base, TimeStampMixin
 
 
-class Event(Base, TimeStampMixin):
+class LogEvent(Base, TimeStampMixin):
     """Event model"""
 
     __tablename__ = "log_events"

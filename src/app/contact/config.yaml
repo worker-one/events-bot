@@ -1,0 +1,17 @@
+strings:
+  en:
+    enter_message: "Enter your message:"
+    message_sent: "Your message has been sent to the administrators."
+    feedback_template: "Feedback text from @{username}: {text}"
+    enter_reply: "Enter your reply to the user:"
+    admin_reply_template: "Reply from admin @{admin_username}: {reply_text}"
+    reply_sent: "Your reply has been sent to the user."
+    user_not_found: "Error: User not found."
+  ru:
+    enter_message: "Введите ваше сообщение:"
+    message_sent: "Ваше сообщение было отправлено администраторам."
+    feedback_template: "Текст отзыва от @{username}: {text}"
+    enter_reply: "Введите ваш ответ пользователю:"
+    admin_reply_template: "Ответ от администратора @{admin_username}: {reply_text}"
+    reply_sent: "Ваш ответ был отправлен пользователю."
+    user_not_found: "Ошибка: Пользователь не найден."

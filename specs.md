@@ -46,6 +46,7 @@ Presents two options:
 - When "Contact" is selected, prompt the user to enter a message.
 - The entered message should be sent to all users with the `admin` role, using the template:  
   `"Feedback text from {username}: {text}"`
+- When admin receives the feedback text via bot, it has to have button "Reply" so that bot captures the response from admin and sends it to user how asked the question.
 
 ---
 

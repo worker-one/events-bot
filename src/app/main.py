@@ -10,8 +10,9 @@ from telebot.states.sync.middleware import StateMiddleware
 from .admin.handlers import register_handlers as admin_handlers
 from .auth.data import init_roles_table, init_superuser
 from .database.core import SessionLocal, create_tables, drop_tables
-from .items.data import init_item_categories_table
-from .items.handlers import register_handlers as items_handlers
+from .events.handlers import register_handlers as events_handlers
+from .events.data import init_events_table
+from .contact.handlers import register_handlers as contact_handlers
 from .menu.handlers import register_handlers as menu_handlers
 from .language.handler import register_handlers as language_handlers
 from .middleware.antiflood import AntifloodMiddleware
@@ -43,7 +44,7 @@ def start_bot():
         logging.critical("BOT_TOKEN is not set in environment variables")
         raise ValueError("BOT_TOKEN environment variable is required")
 
-    logger.info(f"Initializing {config.name} v{config.version}")
+    logger.info(f"Initializing {config.app.name} v{config.app.version}")
 
     try:
         bot = telebot.TeleBot(BOT_TOKEN, use_class_middlewares=True)
@@ -65,12 +66,12 @@ def start_bot():
 
 def _setup_middlewares(bot):
     """Configure bot middlewares."""
-    if config.antiflood.enabled:
+    if config.app.antiflood.enabled:
         logger.info(
-            f"Enabling antiflood (window: {config.antiflood.time_window_seconds}s)"
+            f"Enabling antiflood (window: {config.app.antiflood.time_window_seconds}s)"
         )
         bot.setup_middleware(
-            AntifloodMiddleware(bot, config.antiflood.time_window_seconds)
+            AntifloodMiddleware(bot, config.app.antiflood.time_window_seconds)
         )
 
     bot.setup_middleware(StateMiddleware(bot))
@@ -86,7 +87,8 @@ def _register_handlers(bot):
         menu_handlers,
         public_message_handlers,
         users_handlers,
-        items_handlers,
+        events_handlers,
+        contact_handlers,
         language_handlers
     ]
     for handler in handlers:
@@ -114,7 +116,7 @@ def init_db():
         init_superuser(db_session, SUPERUSER_USER_ID, SUPERUSER_USERNAME)
         logger.info(f"Superuser {SUPERUSER_USERNAME} added successfully.")
 
-    init_item_categories_table(db_session)
+    init_events_table(db_session)
 
     db_session.close()
 
