@@ -9,8 +9,8 @@ COPY pyproject.toml .
 COPY src ./src
 COPY tests ./tests
 
-# Copy the .env file into the container
-COPY .env /app/
+# # Copy the .env file into the container
+# COPY .env /app/
 
 # Install build dependencies
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
