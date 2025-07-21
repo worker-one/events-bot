@@ -39,18 +39,6 @@ Admin features allow performing operations on users. The admin menu is available
 
 - Export database tables of the bot: [src/app/admin](src/app/admin)
 
-### Plugin Features
-
-Plugins are features based on external services and can be plugged in and out easily without breaking the bot.
-
-- OpenAI: It allows consuming OpenAI services like GPT and DALL-E
-
-- Google Drive: It allows uploading and downloading files on Google Drive.
-
-- Google Sheets: It allows creating sheets and writing records on Google Sheets.
-
-- yt-dlp: It allows downloading videos from YouTube and other services supported by yt-dlp.
-
 ## Launch
 
 You can run the project directly on your machine or in Docker.

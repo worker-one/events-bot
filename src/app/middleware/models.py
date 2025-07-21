@@ -8,7 +8,7 @@ from ..models import Base, TimeStampMixin
 class Event(Base, TimeStampMixin):
     """Event model"""
 
-    __tablename__ = "events"
+    __tablename__ = "log_events"
 
     id = Column(Integer, primary_key=True)
     user_id = Column(BigInteger, ForeignKey(User.id))
