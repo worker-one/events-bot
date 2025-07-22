@@ -20,6 +20,7 @@ from .middleware.database import DatabaseMiddleware
 from .middleware.user import UserCallbackMiddleware, UserMessageMiddleware
 from .public_message.handlers import register_handlers as public_message_handlers
 from .users.handlers import register_handlers as users_handlers
+from src.health_check import start_health_check_server
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -122,8 +123,15 @@ def init_db():
 
     logger.info("Database initialized")
 
+def main():
+    """Main entry point for the application."""
+    # Start health check server
+    start_health_check_server(port=8080)
+
 
 if __name__ == "__main__":
     drop_tables()
     init_db()
+    main()
     start_bot()
+

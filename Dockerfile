@@ -23,5 +23,7 @@ EXPOSE 8080
 # Copy the rest of the application code into the container
 COPY . /app
 
+EXPOSE 8080
+
 # Run the application when the container launches
 CMD ["python", "-m", "src.app.main"]
