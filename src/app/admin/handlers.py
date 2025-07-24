@@ -29,7 +29,7 @@ global_config = OmegaConf.load("./src/app/config.yaml")
 from telebot import types
 from telebot.handler_backends import State, StatesGroup
 
-from app.events.service import create_event
+from ..events.service import create_event
 from .markup import create_cancel_button
 
 class CreateEventState(StatesGroup):

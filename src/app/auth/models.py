@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
 
 from ..models import Base
-from src.app.events.models import Event
 
 
 class Role(Base):
