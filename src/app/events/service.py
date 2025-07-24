@@ -27,7 +27,7 @@ def create_event(db_session: Session, event_data: dict) -> Event:
     new_event = Event(
         name=event_data["name"],
         description=event_data.get("description"),
-        image=event_data.get("image"),
+        image=event_data.get("image_url"),
         qtickets_link=event_data.get("qtickets_link"),
         datetime=event_data.get("datetime"),
     )
