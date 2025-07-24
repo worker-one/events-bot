@@ -84,7 +84,7 @@ def register_handlers(bot: TeleBot) -> None:
         inline_keyboard_markup.row(
             InlineKeyboardButton(
                 strings[user.lang].sign_up,
-                web_app=WebAppInfo(event.qtickets_link)
+                url=event.qtickets_link
             )
         )
 
