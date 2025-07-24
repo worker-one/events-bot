@@ -9,7 +9,7 @@ strings:
   ru:
     events_list: "Список мероприятий"
     event_not_found: "Мероприятие не найдено"
-    event_details: "**{name}**\n\n{description}\n\nСсылка на регистрацию: {qtickets_link}"
+    event_details: "**{name}**\n\n{description}"
     email_confirmation: "Если вы успешно прошли регистрацию, билет вы можете найти на почте, которую указывали."
     check_spam: "Если сообщение с билетом не пришло, проверьте папку (спам), либо обратитесь в поддержку"
     sign_up: "Зарегистрироваться"

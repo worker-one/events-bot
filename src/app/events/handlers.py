@@ -76,9 +76,10 @@ def register_handlers(bot: TeleBot) -> None:
         # Format event details message
         message_text = strings[user.lang].event_details.format(
             name=event.name,
-            description=event.description,
-            qtickets_link=event.qtickets_link,
+            description=event.description
         )
+        
+        print("event.qtickets_link:", event.qtickets_link)
         
         inline_keyboard_markup = InlineKeyboardMarkup()
         inline_keyboard_markup.row(
