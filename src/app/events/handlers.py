@@ -4,9 +4,10 @@ from typing import Any, Dict
 
 from omegaconf import OmegaConf
 from telebot import TeleBot, types
+from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from .markup import create_events_list_markup
-from .service import read_event, read_events
+from .service import read_event, read_events, remove_event
 from .scheduler import schedule_message
 
 logger = logging.getLogger(__name__)
@@ -27,10 +28,10 @@ def register_handlers(bot: TeleBot) -> None:
     """
     logger.info("Registering event handlers")
 
-    @bot.callback_query_handler(func=lambda call: call.data == "events")
-    def events_list(call: types.CallbackQuery, data: Dict[str, Any]) -> None:
+    @bot.message_handler(commands=["start"])
+    def events_list(message: types.Message, data: Dict[str, Any]) -> None:
         """
-        Handle the events list callback.
+        Handle the events list command.
 
         Args:
             call: The callback query
@@ -41,10 +42,11 @@ def register_handlers(bot: TeleBot) -> None:
         events = read_events(db_session)
 
         markup = create_events_list_markup(user.lang, events)
+        # Add "Обратная связь" button
+        markup.add(InlineKeyboardButton("Обратная связь", callback_data="contact"))
 
-        bot.edit_message_text(
-            chat_id=user.id,
-            message_id=call.message.message_id,
+        bot.send_message(
+            user.id,
             text=strings[user.lang].events_list,
             reply_markup=markup,
         )
@@ -79,12 +81,21 @@ def register_handlers(bot: TeleBot) -> None:
             qtickets_link=event.qtickets_link,
         )
 
-        bot.edit_message_text(
-            chat_id=user.id,
-            message_id=call.message.message_id,
-            text=message_text,
-            parse_mode="Markdown",
-        )
+        # If event has an image, send it first, then send details as a message
+        if event.image:
+            bot.send_photo(
+                user.id,
+                event.image,
+                caption=message_text,
+                parse_mode="Markdown",
+            )
+        else:
+            bot.edit_message_text(
+                chat_id=user.id,
+                message_id=call.message.message_id,
+                text=message_text,
+                parse_mode="Markdown",
+            )
 
         # Schedule message about email confirmation in 90 seconds
         schedule_message(

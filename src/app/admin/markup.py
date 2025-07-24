@@ -44,3 +44,12 @@ def create_cancel_button(lang: str) -> InlineKeyboardMarkup:
         InlineKeyboardButton(app_strings[lang].cancel, callback_data="cancel_admin")
     )
     return cancel_button
+
+
+def create_event_cancel_button(lang: str) -> InlineKeyboardMarkup:
+    """Create a cancel button for the event creation dialog."""
+    cancel_button = InlineKeyboardMarkup(row_width=1)
+    cancel_button.add(
+        InlineKeyboardButton(app_strings[lang].cancel, callback_data="cancel_event")
+    )
+    return cancel_button
