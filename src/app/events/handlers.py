@@ -4,8 +4,7 @@ from typing import Any, Dict
 
 from omegaconf import OmegaConf
 from telebot import TeleBot, types
-from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
-
+from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from .markup import create_events_list_markup
 from .service import read_event, read_events, remove_event
 from .scheduler import schedule_message
@@ -80,6 +79,14 @@ def register_handlers(bot: TeleBot) -> None:
             description=event.description,
             qtickets_link=event.qtickets_link,
         )
+        
+        inline_keyboard_markup = InlineKeyboardMarkup()
+        inline_keyboard_markup.row(
+            InlineKeyboardButton(
+                strings[user.lang].start,
+                web_app=WebAppInfo(event.qtickets_link)
+            )
+        )
 
         # If event has an image, send it first, then send details as a message
         if event.image:
@@ -88,6 +95,7 @@ def register_handlers(bot: TeleBot) -> None:
                 event.image,
                 caption=message_text,
                 parse_mode="Markdown",
+                reply_markup=inline_keyboard_markup,
             )
         else:
             bot.edit_message_text(
@@ -95,6 +103,7 @@ def register_handlers(bot: TeleBot) -> None:
                 message_id=call.message.message_id,
                 text=message_text,
                 parse_mode="Markdown",
+                reply_markup=inline_keyboard_markup,
             )
 
         # Schedule message about email confirmation in 90 seconds
