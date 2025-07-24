@@ -5,9 +5,11 @@ strings:
     event_details: "*Event Details*\n\nName: `{name}`\nDescription: `{description}`\nRegistration: {qtickets_link}"
     email_confirmation: "If you successfully registered, you can find your ticket in the email you provided."
     check_spam: "If the ticket email hasn't arrived, please check your spam folder or contact support"
+    sign_up: "Sign Up"
   ru:
     events_list: "Список мероприятий"
     event_not_found: "Мероприятие не найдено"
     event_details: "**{name}**\n\n{description}\n\nСсылка на регистрацию: {qtickets_link}"
     email_confirmation: "Если вы успешно прошли регистрацию, билет вы можете найти на почте, которую указывали."
     check_spam: "Если сообщение с билетом не пришло, проверьте папку (спам), либо обратитесь в поддержку"
+    sign_up: "Зарегистрироваться"
