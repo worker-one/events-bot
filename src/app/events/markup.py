@@ -17,4 +17,5 @@ def create_events_list_markup(lang: str, events: list[Event]) -> InlineKeyboardM
         markup.add(
             InlineKeyboardButton(event.name, callback_data=f"event_{event.id}")
         )
+    # markup.add(InlineKeyboardButton("Обратная связь", callback_data="feedback"))
     return markup

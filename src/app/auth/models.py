@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
 
 from ..models import Base
-from ..events.models import users_events
 
 
 class Role(Base):
@@ -33,5 +32,9 @@ class User(Base):
     is_blocked = Column(Boolean, default=False)
 
     role = relationship("Role", backref="users", lazy="joined")
-    
-    events = relationship("Event", secondary=users_events, back_populates="users")
+    # events = relationship(
+    #     "Event",
+    #     secondary="users_events",
+    #     back_populates="users",
+    #     lazy="dynamic",
+    # )

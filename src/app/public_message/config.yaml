@@ -1,5 +1,5 @@
 app:
-  timezone: "Europe/Paris"
+  timezone: "Europe/Moscow"
 strings:
   en:
     menu:
